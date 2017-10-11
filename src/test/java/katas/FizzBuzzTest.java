@@ -52,9 +52,7 @@ public class FizzBuzzTest {
 
 	private String convertToFizzOrBuzz(Integer[] inputAsDigits) {
 
-		Stream<String> result = Arrays.asList(inputAsDigits).stream().map(i -> 
-			convertToFizzOrBuzz(i) + " "
-		);
+		Stream<String> result = Arrays.asList(inputAsDigits).stream().map(i -> convertToFizzOrBuzz(i) + " ");
 
 		return result.collect(Collectors.joining()).trim();
 	}
@@ -71,18 +69,21 @@ public class FizzBuzzTest {
 	}
 
 	private String convertToFizzOrBuzz(int digit) {
+
+		String result = "" + digit;
+
 		if (isDividableByThreeAndFive(digit)) {
-			return "FizzBuzz";
+			result = "FizzBuzz";
 		} else {
 			if (isDividableByThree(digit)) {
-				return "Fizz";
+				result = "Fizz";
 			}
 
 			if (isDividableByFive(digit)) {
-				return "Buzz";
+				result = "Buzz";
 			}
 		}
-		return "" + digit;
+		return result;
 	}
 
 	private boolean isDividableByThreeAndFive(int digit) {
