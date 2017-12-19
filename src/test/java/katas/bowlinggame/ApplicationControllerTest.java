@@ -6,7 +6,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
-public class DialogControllerTest {
+public class ApplicationControllerTest {
 
   private Application application;
 
@@ -40,8 +40,7 @@ public class DialogControllerTest {
     //When
     application.showOptionMenu();
 
-    //Then
-    Mockito.verify(dialogController).showOptionMenu();
+    //Then => Throws exception
   }
 
   @Test
@@ -53,6 +52,7 @@ public class DialogControllerTest {
     application.showOptionMenu();
 
     //Then
+    Mockito.verify(dialogController).showOptionMenu();
     Mockito.verify(dialogController).startGame();
   }
 }
