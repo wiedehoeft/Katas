@@ -1,96 +1,46 @@
 package katas;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.EnumSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class CustomerTest {
 
-  private Customer customer;
+  enum TestParams {
+    /*Category A */
+    rentForOneDay(1, Price.CATEGORY_A, 2.00),
+    rentForMaxDaysWithBasePrice(2, Price.CATEGORY_A, 2.00),
+    rentForFirstDayWithExtraCosts(3, Price.CATEGORY_A, 3.75),
+    rentForAnyDaysWithExtraCosts(5, Price.CATEGORY_A, 7.25),
 
-  @BeforeEach
-  public void setUp() throws Exception {
-    customer = new Customer();
+    /*Category B */
+    rentForOneDayB(1, Price.CATEGORY_B, 1.50),
+    rentForMaxDaysWithBasePriceB(3, Price.CATEGORY_B, 1.50),
+    rentForFirstDayWithExtraCostsB(4, Price.CATEGORY_B, 3.00),
+    rentForAnyDaysWithExtraCostsB(5, Price.CATEGORY_B, 4.50);
+
+    final int days;
+    final Price price;
+    final double expectedCharge;
+
+    TestParams(int days, Price price, double expectedCharge) {
+      this.days = days;
+      this.price = price;
+      this.expectedCharge = expectedCharge;
+    }
   }
 
-  @Test
-  public void rentMovieCategoryAForADay() throws Exception {
+  @ParameterizedTest
+  @EnumSource(TestParams.class)
+  void rentMovies(TestParams testParams) {
+    // Given
+    Customer customer = new Customer();
 
-    //When
-    customer.rentMovie(1, Price.CATEGORY_A);
+    // When
+    customer.rentMovie(testParams.days, testParams.price);
 
-    //Then
-    assertThat(customer.getTotalCharge()).isEqualTo(2.00);
-  }
-
-  @Test
-  public void rentMovieCategoryAForMaxDaysWithBasePrice() throws Exception {
-
-    //When
-    customer.rentMovie(2, Price.CATEGORY_A);
-
-    //Then
-    assertThat(customer.getTotalCharge()).isEqualTo(2.00);
-  }
-
-  @Test
-  public void testRentMovieCategoryAForFirstDayWithExtraCosts() throws Exception {
-
-    //When
-    customer.rentMovie(3, Price.CATEGORY_A);
-
-    //Then
-    assertThat(customer.getTotalCharge()).isEqualTo(3.75);
-  }
-
-  @Test
-  public void testRentMovieCategoryAForAnyDaysWithExtraCosts() throws Exception {
-
-    //When
-    customer.rentMovie(5, Price.CATEGORY_A);
-
-    //Then
-    assertThat(customer.getTotalCharge()).isEqualTo(7.25);
-  }
-
-  @Test
-  public void testRentMovieCategoryBForADay() throws Exception {
-
-    //When
-    customer.rentMovie(1, Price.CATEGORY_B);
-
-    //Then
-    assertThat(customer.getTotalCharge()).isEqualTo(1.50);
-  }
-
-  @Test
-  public void rentMovieCategoryBForMaxDaysWithBasePrice() throws Exception {
-
-    //When
-    customer.rentMovie(3, Price.CATEGORY_B);
-
-    //Then
-    assertThat(customer.getTotalCharge()).isEqualTo(1.50);
-  }
-
-  @Test
-  public void testRentMovieCategoryBForFirstDayWithExtraCosts() throws Exception {
-
-    //When
-    customer.rentMovie(4, Price.CATEGORY_B);
-
-    //Then
-    assertThat(customer.getTotalCharge()).isEqualTo(3.00);
-  }
-
-  @Test
-  public void testRentMovieCategoryBForAnyDaysWithExtraCosts() throws Exception {
-
-    //When
-    customer.rentMovie(5, Price.CATEGORY_B);
-
-    //Then
-    assertThat(customer.getTotalCharge()).isEqualTo(4.50);
+    // Then
+    assertThat(customer.getTotalCharge()).isEqualTo(testParams.expectedCharge);
   }
 }
