@@ -1,6 +1,5 @@
 package katas;
 
-import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -16,40 +15,82 @@ public class CustomerTest {
   }
 
   @Test
-  public void rentMovieForADay() throws Exception {
+  public void rentMovieCategoryAForADay() throws Exception {
 
     //When
-    customer.rentMovie(1);
+    customer.rentMovie(1, Price.CATEGORY_A);
 
     //Then
     assertThat(customer.getTotalCharge()).isEqualTo(2.00);
   }
 
   @Test
-  public void rentMovieForMaxDaysWithBasePrice() throws Exception {
+  public void rentMovieCategoryAForMaxDaysWithBasePrice() throws Exception {
 
     //When
-    customer.rentMovie(2);
+    customer.rentMovie(2, Price.CATEGORY_A);
 
     //Then
     assertThat(customer.getTotalCharge()).isEqualTo(2.00);
   }
 
   @Test
-  public void testRentMovieForFirstDayWithExtraCosts() throws Exception {
+  public void testRentMovieCategoryAForFirstDayWithExtraCosts() throws Exception {
 
     //When
-    customer.rentMovie(3);
+    customer.rentMovie(3, Price.CATEGORY_A);
+
     //Then
     assertThat(customer.getTotalCharge()).isEqualTo(3.75);
   }
 
   @Test
-  public void testRentMovieForAnyDaysWithExtraCosts() throws Exception {
+  public void testRentMovieCategoryAForAnyDaysWithExtraCosts() throws Exception {
 
     //When
-    customer.rentMovie(5);
+    customer.rentMovie(5, Price.CATEGORY_A);
+
     //Then
     assertThat(customer.getTotalCharge()).isEqualTo(7.25);
+  }
+
+  @Test
+  public void testRentMovieCategoryBForADay() throws Exception {
+
+    //When
+    customer.rentMovie(1, Price.CATEGORY_B);
+
+    //Then
+    assertThat(customer.getTotalCharge()).isEqualTo(1.50);
+  }
+
+  @Test
+  public void rentMovieCategoryBForMaxDaysWithBasePrice() throws Exception {
+
+    //When
+    customer.rentMovie(3, Price.CATEGORY_B);
+
+    //Then
+    assertThat(customer.getTotalCharge()).isEqualTo(1.50);
+  }
+
+  @Test
+  public void testRentMovieCategoryBForFirstDayWithExtraCosts() throws Exception {
+
+    //When
+    customer.rentMovie(4, Price.CATEGORY_B);
+
+    //Then
+    assertThat(customer.getTotalCharge()).isEqualTo(3.00);
+  }
+
+  @Test
+  public void testRentMovieCategoryBForAnyDaysWithExtraCosts() throws Exception {
+
+    //When
+    customer.rentMovie(5, Price.CATEGORY_B);
+
+    //Then
+    assertThat(customer.getTotalCharge()).isEqualTo(4.50);
   }
 }
