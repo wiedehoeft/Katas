@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Questionnaire</title>
+
+    <script src="../../../app/bower_components/handlebars/handlebars.js"></script>
+
+</head>
+<body>
+
+<h1>Questionnaire</h1>
+
+<script id="some-template" type="text/x-handlebars-template">
+    <table>
+        <thead>
+        <th>Username</th>
+        <th>Real Name</th>
+        <th>Email</th>
+        </thead>
+        <tbody id="content-placeholder">
+        {{#users}}
+        <tr>
+            <td>{{username}}</td>
+            <td>{{firstName}} {{lastName}}</td>
+            <td>{{email}}</td>
+        </tr>
+        {{/users}}
+        </tbody>
+    </table>
+</script>
+
+<div id="template"></div>
+
+<script src="controller.js"></script>
+<button>Show my score...</button>
+
+</body>
+</html>
