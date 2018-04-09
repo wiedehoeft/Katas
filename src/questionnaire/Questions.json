@@ -1,0 +1,20 @@
+{
+  "Questions": [
+    {
+      "question": "?Which of these animals is a mammal",
+      "answers": [
+        "Ant",
+        "Bee",
+        "*Cat"
+      ]
+    },
+    {
+      "question": "?What is the sum of 2+3",
+      "answers": [
+        "2",
+        "*5",
+        "6"
+      ]
+    }
+  ]
+}
