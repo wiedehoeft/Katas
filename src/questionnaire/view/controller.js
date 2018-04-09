@@ -7,8 +7,4 @@ var data = {
         {username: "ryan", firstName: "Ryan", lastName: "Carson", email: "ryan@test.com"}
     ]
 };
-var result = template(data);
-
 document.getElementById("template").innerHTML = template(data);
-
-// $("#content-placeholder").html(template(data));
