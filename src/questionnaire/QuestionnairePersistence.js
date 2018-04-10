@@ -1,7 +1,7 @@
 var questions = require("./Questions");
 var fileHelper = require("./FileHelper");
 
-exports.fillModel = function () {
+function fillModel() {
     var questionnaire = Object.create(Questionnaire);
     questionnaire = JSON.parse('{\n' +
         '  "questions": [\n' +
@@ -29,7 +29,7 @@ exports.fillModel = function () {
     });
 
     return questionnaire;
-};
+}
 
 var Questionnaire = {
     questions: Question
@@ -38,5 +38,9 @@ var Questionnaire = {
 var Question = {
     answers: undefined,
     correctAnswer: undefined
+};
+
+module.exports = {
+    fillModel: fillModel
 };
 
