@@ -12,22 +12,18 @@
 <h1>Questionnaire</h1>
 
 <script id="some-template" type="text/x-handlebars-template">
-    <table>
-        <thead>
-        <th>Username</th>
-        <th>Real Name</th>
-        <th>Email</th>
-        </thead>
-        <tbody id="content-placeholder">
-        {{#users}}
-        <tr>
-            <td>{{username}}</td>
-            <td>{{firstName}} {{lastName}}</td>
-            <td>{{email}}</td>
-        </tr>
-        {{/users}}
-        </tbody>
-    </table>
+    <ul>
+        {{#each questions}}
+        <li>
+            {{question}} <br/>
+            <form>
+                {{#each answers}}
+                <input type="radio" name="{{../question}}">{{.}} <br/>
+                {{/each}}
+            </form>
+        </li>
+        {{/each}}
+    </ul>
 </script>
 
 <div id="template"></div>
